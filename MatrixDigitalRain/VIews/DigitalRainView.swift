@@ -32,7 +32,7 @@ extension DigitalRainView {
         private let dropHeight: CGFloat
         private let dropWidth: CGFloat
         private let columnsCount: Int
-        private let rowsCount: Int // <--
+        private let rowsCount: Int
         
         let sourceString: String
         let dropSize: CGSize
@@ -75,7 +75,10 @@ extension DigitalRainView.ViewModel {
     }
     
     func opacity(_ x: Int, _ y: Int) -> CGFloat {
-        0.1
+        if currentIndex == x {
+            return 1.0
+        }
+        return 0.1
     }
 }
 
@@ -84,7 +87,7 @@ extension DigitalRainView.ViewModel {
 extension DigitalRainView.ViewModel {
     func startTimer() {
         Timer.scheduledTimer(
-            withTimeInterval: 1.0,
+            withTimeInterval: 0.5,
             repeats: true
         ) { [weak self] timer in
             guard let self = self else { return }
