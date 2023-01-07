@@ -35,15 +35,17 @@ extension DigitalRainView {
         private let rowsCount: Int
         private let visibleDropLength: Int
         
-        private let verticalOffsets: [Int]
+        private var verticalOffsets: [Int]
+        private var chars: [[Character]]
         
         let sourceString: String
         let dropSize: CGSize
         let matrix: Matrix
         
-        @Published private var currentYIndex: Int = 0
-        var chars: [[Character]]
+        private let wholeRowsCount: Int
         
+        @Published private var currentYIndex: Int = 0
+
         init(
             sourceString: String,
             dropHeight: CGFloat,
@@ -57,6 +59,7 @@ extension DigitalRainView {
             self.dropSize = .init(width: dropWidth, height: dropHeight)
             self.matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
             self.visibleDropLength = matrix.rowsCount / 3
+            self.wholeRowsCount = self.rowsCount + visibleDropLength + visibleDropLength
             
             var offsetsArray: [Int] = []
             for i in 0..<columnsCount {
@@ -134,7 +137,7 @@ extension DigitalRainView.ViewModel {
     }
     
     private func updateCurrentIndex() {
-        if currentYIndex == rowsCount - 1 {
+        if currentYIndex == wholeRowsCount - 1 {
             self.resetCurrentIndex()
         } else {
             self.incrementCurrentIndex()
