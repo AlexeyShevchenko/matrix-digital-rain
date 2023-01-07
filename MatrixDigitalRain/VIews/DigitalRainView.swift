@@ -35,12 +35,14 @@ extension DigitalRainView {
         private let rowsCount: Int
         private let visibleDropLength: Int
         
+        private let verticalOffsets: [Int]
+        
         let sourceString: String
         let dropSize: CGSize
         let matrix: Matrix
         
         @Published private var currentYIndex: Int = 0
-        @Published var chars: [[Character]]
+        var chars: [[Character]]
         
         init(
             sourceString: String,
@@ -56,6 +58,19 @@ extension DigitalRainView {
             self.matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
             self.visibleDropLength = matrix.rowsCount / 3
             
+            var offsetsArray: [Int] = []
+            for i in 0..<columnsCount {
+                offsetsArray.append(i)
+            }
+            var shuffledOffsets = offsetsArray
+            for index in 0..<shuffledOffsets.count {
+                let randomIndex = Int.random(in: 0..<shuffledOffsets.count)
+                let temp = shuffledOffsets[index]
+                shuffledOffsets[index] = shuffledOffsets[randomIndex]
+                shuffledOffsets[randomIndex] = temp
+            }
+            verticalOffsets = shuffledOffsets
+            
             var result: [[Character]] = []
             for _ in 0..<rowsCount {
                 let s = String.randomSubstring(
@@ -65,6 +80,17 @@ extension DigitalRainView {
                 result.append(s)
             }
             chars = result
+        }
+        
+        func shuffleArray(array: [Int]) -> [Int] {
+            var shuffledArray = array
+            for index in 0..<shuffledArray.count {
+                let randomIndex = Int.random(in: 0..<shuffledArray.count)
+                let temp = shuffledArray[index]
+                shuffledArray[index] = shuffledArray[randomIndex]
+                shuffledArray[randomIndex] = temp
+            }
+            return shuffledArray
         }
     }
 }
@@ -78,7 +104,8 @@ extension DigitalRainView.ViewModel {
     
     // MARK: - should be a bit difficulty
     func opacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
-        if rowIndex > currentYIndex {
+        let verticalOffset = verticalOffsets[columnIndex]
+        if currentYIndex < (rowIndex - verticalOffset) {
             return 0
         } else {
             return getOpacity(rowIndex, columnIndex)
@@ -86,7 +113,9 @@ extension DigitalRainView.ViewModel {
     }
     
     private func getOpacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
-        let proprotion = CGFloat((currentYIndex - rowIndex)) / CGFloat(visibleDropLength)
+        let verticalOffset = verticalOffsets[columnIndex]
+        
+        let proprotion = CGFloat((currentYIndex - rowIndex - verticalOffset)) / CGFloat(visibleDropLength)
         return 1 - proprotion
     }
 }
