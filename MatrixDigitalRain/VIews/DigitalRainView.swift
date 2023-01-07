@@ -105,7 +105,7 @@ extension DigitalRainView.ViewModel {
     // MARK: - should be a bit difficulty
     func opacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
         let verticalOffset = verticalOffsets[columnIndex]
-        if currentYIndex < (rowIndex - verticalOffset) {
+        if currentYIndex < (rowIndex + verticalOffset) {
             return 0
         } else {
             return getOpacity(rowIndex, columnIndex)
@@ -129,11 +129,15 @@ extension DigitalRainView.ViewModel {
             repeats: true
         ) { [weak self] timer in
             guard let self = self else { return }
-            if self.currentYIndex == self.rowsCount - 1 {
-                self.resetCurrentIndex()
-            } else {
-                self.incrementCurrentIndex()
-            }
+            self.updateCurrentIndex()
+        }
+    }
+    
+    private func updateCurrentIndex() {
+        if currentYIndex == rowsCount - 1 {
+            self.resetCurrentIndex()
+        } else {
+            self.incrementCurrentIndex()
         }
     }
     
