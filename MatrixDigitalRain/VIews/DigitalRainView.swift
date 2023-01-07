@@ -28,11 +28,42 @@ extension DigitalRainView {
 }
 
 protocol VerticalOffsetsProviding: AnyObject {
-    func verticalOffsets() -> [Int]
+    func verticalOffsets(_ columnsCount: Int) -> [Int]
+}
+
+class VerticalOffsetsProvider: VerticalOffsetsProviding {
+    func verticalOffsets(_ columnsCount: Int) -> [Int] {
+        var offsetsArray: [Int] = []
+        for i in 0..<columnsCount {
+            offsetsArray.append(i)
+        }
+        var shuffledOffsets = offsetsArray
+        for index in 0..<shuffledOffsets.count {
+            let randomIndex = Int.random(in: 0..<shuffledOffsets.count)
+            let temp = shuffledOffsets[index]
+            shuffledOffsets[index] = shuffledOffsets[randomIndex]
+            shuffledOffsets[randomIndex] = temp
+        }
+        return shuffledOffsets
+    }
 }
 
 protocol CharsProviding: AnyObject {
-    func chars() -> [[Character]]
+    func chars(_ rowsCount: Int, _ columnsCount: Int, _ sourceString: String) -> [[Character]]
+}
+
+class CharsProvider: CharsProviding {
+    func chars(_ rowsCount: Int, _ columnsCount: Int, _ sourceString: String) -> [[Character]] {
+        var result: [[Character]] = []
+        for _ in 0..<rowsCount {
+            let s = String.randomSubstring(
+                ofLength: columnsCount,
+                from: sourceString
+            ).map { $0 }
+            result.append(s)
+        }
+        return result
+    }
 }
 
 extension DigitalRainView {
@@ -45,6 +76,9 @@ extension DigitalRainView {
         private let sourceString: String
         private let wholeRowsCount: Int
         
+        private let verticalOffsetsProvider: VerticalOffsetsProviding
+        private let charsProvider: CharsProviding
+        
         private var verticalOffsets: [Int]
         private var chars: [[Character]]
         
@@ -56,40 +90,25 @@ extension DigitalRainView {
         init(
             sourceString: String,
             dropHeight: CGFloat,
-            columnsCount: Int
+            columnsCount: Int,
+            verticalOffsetsProvider: VerticalOffsetsProviding,
+            charsProvider: CharsProviding
         ) {
             self.sourceString = sourceString
             self.dropHeight = dropHeight
             self.columnsCount = columnsCount
+            self.verticalOffsetsProvider = verticalOffsetsProvider
+            self.charsProvider = charsProvider
+            
             rowsCount = .init(UIScreen.main.bounds.height / dropHeight)
             dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
             dropSize = .init(width: dropWidth, height: dropHeight)
             matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
             visibleDropLength = Int(CGFloat(matrix.rowsCount) / 2.5)
             wholeRowsCount = rowsCount + visibleDropLength + visibleDropLength
-            
-            var offsetsArray: [Int] = []
-            for i in 0..<columnsCount {
-                offsetsArray.append(i)
-            }
-            var shuffledOffsets = offsetsArray
-            for index in 0..<shuffledOffsets.count {
-                let randomIndex = Int.random(in: 0..<shuffledOffsets.count)
-                let temp = shuffledOffsets[index]
-                shuffledOffsets[index] = shuffledOffsets[randomIndex]
-                shuffledOffsets[randomIndex] = temp
-            }
-            verticalOffsets = shuffledOffsets
-            
-            var result: [[Character]] = []
-            for _ in 0..<rowsCount {
-                let s = String.randomSubstring(
-                    ofLength: columnsCount,
-                    from: sourceString
-                ).map { $0 }
-                result.append(s)
-            }
-            chars = result
+
+            verticalOffsets = verticalOffsetsProvider.verticalOffsets(columnsCount)
+            chars = charsProvider.chars(rowsCount, columnsCount, sourceString)
         }
         
         func shuffleArray(array: [Int]) -> [Int] {
