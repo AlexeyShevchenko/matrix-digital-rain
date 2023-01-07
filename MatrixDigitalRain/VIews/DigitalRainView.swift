@@ -72,21 +72,21 @@ extension DigitalRainView {
 // MARK: - UI -
 
 extension DigitalRainView.ViewModel {
-    func char(_ x: Int, _ y: Int) -> String {
-        String(chars[x][y])
+    func char(_ rowIndex: Int, _ columnIndex: Int) -> String {
+        String(chars[rowIndex][columnIndex])
     }
     
     // MARK: - should be a bit difficulty
-    func opacity(_ x: Int, _ y: Int) -> CGFloat {
-        if x > currentIndex {
+    func opacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
+        if rowIndex > currentIndex {
             return 0
         } else {
-            return getOpacity(x, y)
+            return getOpacity(rowIndex, columnIndex)
         }
     }
     
-    private func getOpacity(_ x: Int, _ y: Int) -> CGFloat {
-        let proprotion = CGFloat((currentIndex - x)) / CGFloat(visibleDropLength)
+    private func getOpacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
+        let proprotion = CGFloat((currentIndex - rowIndex)) / CGFloat(visibleDropLength)
         return 1 - proprotion
     }
 }
@@ -130,12 +130,12 @@ extension DigitalRainView {
             Color.black.edgesIgnoringSafeArea(.all)
             
             Grid(horizontalSpacing: 0, verticalSpacing: 0) {
-                ForEach(0..<viewModel.matrix.rowsCount, id: \.self) { xIndex in
+                ForEach(0..<viewModel.matrix.rowsCount, id: \.self) { rowIndex in
                     GridRow {
-                        ForEach(0..<viewModel.matrix.columnsCount, id: \.self) { yIndex in
-                            Text(viewModel.char(xIndex, yIndex))
+                        ForEach(0..<viewModel.matrix.columnsCount, id: \.self) { columnIndex in
+                            Text(viewModel.char(rowIndex, columnIndex))
                                 .foregroundColor(Color.green)
-                                .opacity(viewModel.opacity(xIndex, yIndex))
+                                .opacity(viewModel.opacity(rowIndex, columnIndex))
                                 .frame(width: viewModel.dropSize.width, height: viewModel.dropSize.height)
                         }
                     }
