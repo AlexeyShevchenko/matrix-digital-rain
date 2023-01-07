@@ -39,7 +39,7 @@ extension DigitalRainView {
         let dropSize: CGSize
         let matrix: Matrix
         
-        @Published private var currentIndex: Int = 0
+        @Published private var currentYIndex: Int = 0
         @Published var chars: [[Character]]
         
         init(
@@ -78,7 +78,7 @@ extension DigitalRainView.ViewModel {
     
     // MARK: - should be a bit difficulty
     func opacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
-        if rowIndex > currentIndex {
+        if rowIndex > currentYIndex {
             return 0
         } else {
             return getOpacity(rowIndex, columnIndex)
@@ -86,7 +86,7 @@ extension DigitalRainView.ViewModel {
     }
     
     private func getOpacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
-        let proprotion = CGFloat((currentIndex - rowIndex)) / CGFloat(visibleDropLength)
+        let proprotion = CGFloat((currentYIndex - rowIndex)) / CGFloat(visibleDropLength)
         return 1 - proprotion
     }
 }
@@ -100,7 +100,7 @@ extension DigitalRainView.ViewModel {
             repeats: true
         ) { [weak self] timer in
             guard let self = self else { return }
-            if self.currentIndex == self.rowsCount - 1 {
+            if self.currentYIndex == self.rowsCount - 1 {
                 self.resetCurrentIndex()
             } else {
                 self.incrementCurrentIndex()
@@ -109,11 +109,11 @@ extension DigitalRainView.ViewModel {
     }
     
     private func resetCurrentIndex() {
-        currentIndex = 0
+        currentYIndex = 0
     }
     
     private func incrementCurrentIndex() {
-        currentIndex += 1
+        currentYIndex += 1
     }
 }
 
