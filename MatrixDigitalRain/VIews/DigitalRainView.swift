@@ -27,6 +27,14 @@ extension DigitalRainView {
     }
 }
 
+protocol VerticalOffsetsProviding: AnyObject {
+    func verticalOffsets() -> [Int]
+}
+
+protocol CharsProviding: AnyObject {
+    func chars() -> [[Character]]
+}
+
 extension DigitalRainView {
     class ViewModel: ObservableObject {
         private let dropHeight: CGFloat
@@ -34,15 +42,14 @@ extension DigitalRainView {
         private let columnsCount: Int
         private let rowsCount: Int
         private let visibleDropLength: Int
+        private let sourceString: String
+        private let wholeRowsCount: Int
         
         private var verticalOffsets: [Int]
         private var chars: [[Character]]
         
-        let sourceString: String
         let dropSize: CGSize
         let matrix: Matrix
-        
-        private let wholeRowsCount: Int
         
         @Published private var currentYIndex: Int = 0
 
@@ -54,12 +61,12 @@ extension DigitalRainView {
             self.sourceString = sourceString
             self.dropHeight = dropHeight
             self.columnsCount = columnsCount
-            self.rowsCount = .init(UIScreen.main.bounds.height / dropHeight)
-            self.dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
-            self.dropSize = .init(width: dropWidth, height: dropHeight)
-            self.matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
-            self.visibleDropLength = Int(CGFloat(matrix.rowsCount) / 2.5)
-            self.wholeRowsCount = rowsCount + visibleDropLength + visibleDropLength
+            rowsCount = .init(UIScreen.main.bounds.height / dropHeight)
+            dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
+            dropSize = .init(width: dropWidth, height: dropHeight)
+            matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
+            visibleDropLength = Int(CGFloat(matrix.rowsCount) / 2.5)
+            wholeRowsCount = rowsCount + visibleDropLength + visibleDropLength
             
             var offsetsArray: [Int] = []
             for i in 0..<columnsCount {
