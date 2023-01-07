@@ -11,6 +11,7 @@
 		7C242E192964BC0700564082 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C242E182964BC0700564082 /* ContentView.swift */; };
 		7C242E1B2964BC0C00564082 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C242E1A2964BC0C00564082 /* Assets.xcassets */; };
 		7C242E1E2964BC0C00564082 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C242E1D2964BC0C00564082 /* Preview Assets.xcassets */; };
+		7C242E262964BC5700564082 /* DigitalRainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C242E252964BC5700564082 /* DigitalRainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		7C242E182964BC0700564082 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7C242E1A2964BC0C00564082 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C242E1D2964BC0C00564082 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7C242E252964BC5700564082 /* DigitalRainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalRainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 				7C242E162964BC0700564082 /* MatrixDigitalRainApp.swift */,
 				7C242E182964BC0700564082 /* ContentView.swift */,
 				7C242E1A2964BC0C00564082 /* Assets.xcassets */,
+				7C242E242964BC1800564082 /* VIews */,
 				7C242E1C2964BC0C00564082 /* Preview Content */,
 			);
 			path = MatrixDigitalRain;
@@ -65,6 +68,14 @@
 				7C242E1D2964BC0C00564082 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7C242E242964BC1800564082 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				7C242E252964BC5700564082 /* DigitalRainView.swift */,
+			);
+			path = VIews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C242E262964BC5700564082 /* DigitalRainView.swift in Sources */,
 				7C242E192964BC0700564082 /* ContentView.swift in Sources */,
 				7C242E172964BC0700564082 /* MatrixDigitalRainApp.swift in Sources */,
 			);
