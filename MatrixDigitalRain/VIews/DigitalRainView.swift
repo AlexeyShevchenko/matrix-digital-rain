@@ -70,12 +70,13 @@ extension DigitalRainView {
 }
 
 // MARK: - UI -
-// MARK: - should be a bit difficulty
+
 extension DigitalRainView.ViewModel {
     func char(_ x: Int, _ y: Int) -> String {
         String(chars[x][y])
     }
     
+    // MARK: - should be a bit difficulty
     func opacity(_ x: Int, _ y: Int) -> CGFloat {
         if x > currentIndex {
             return 0
