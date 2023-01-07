@@ -159,11 +159,15 @@ extension DigitalRainView.ViewModel {
     }
     
     private func resetCurrentIndex() {
-        currentYIndex = 0
+        withAnimation {
+            chars = charsProvider.chars(rowsCount, columnsCount, sourceString)
+            verticalOffsets = verticalOffsetsProvider.verticalOffsets(columnsCount)
+            currentYIndex = 0
+        }
     }
     
     private func incrementCurrentIndex() {
-        currentYIndex += 1
+        withAnimation { currentYIndex += 1 }
     }
 }
 
