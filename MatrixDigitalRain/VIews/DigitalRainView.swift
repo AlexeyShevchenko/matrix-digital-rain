@@ -8,25 +8,6 @@
 import SwiftUI
 import Foundation
 
-extension DigitalRainView {
-    func drow(_ charsInDrop: [String]) -> some View {
-        VStack {
-            HStack {
-                ForEach(0..<charsInDrop.count, id: \.self) { index in
-                    Text(charsInDrop[index])
-                }
-            }
-        }
-    }
-}
-
-extension DigitalRainView {
-    struct Matrix {
-        let columnsCount: Int
-        let rowsCount: Int
-    }
-}
-
 protocol VerticalOffsetsProviding: AnyObject {
     func verticalOffsets(_ columnsCount: Int) -> [Int]
 }
@@ -63,6 +44,13 @@ class CharsProvider: CharsProviding {
             result.append(s)
         }
         return result
+    }
+}
+
+extension DigitalRainView {
+    struct Matrix {
+        let columnsCount: Int
+        let rowsCount: Int
     }
 }
 
