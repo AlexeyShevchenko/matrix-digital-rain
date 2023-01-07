@@ -29,7 +29,7 @@ extension DigitalRainView {
         let rowsCount: Int
         
         @Published var chars: [[Character]]
-
+        
         init(
             sourceString: String,
             dropHeight: CGFloat,
@@ -40,7 +40,7 @@ extension DigitalRainView {
             self.columnsCount = columnsCount
             self.rowsCount = Int(UIScreen.main.bounds.height / dropHeight)
             self.dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
-
+            
             var result: [[Character]] = []
             for _ in 0..<rowsCount {
                 let s = String.randomSubstring(
@@ -55,6 +55,10 @@ extension DigitalRainView {
         func char(_ x: Int, _ y: Int) -> String {
             String(chars[x][y])
         }
+        
+        func opacity(_ x: Int, _ y: Int) -> CGFloat {
+            0.1
+        }
     }
 }
 
@@ -67,18 +71,25 @@ struct DigitalRainView: View {
 
 extension DigitalRainView {
     var body: some View {
-        Grid(horizontalSpacing: 0, verticalSpacing: 0) {
-            ForEach(0..<viewModel.rowsCount, id: \.self) { xIndex in
-                GridRow {
-                    ForEach(0..<viewModel.columnsCount, id: \.self) { yIndex in
-                        Text(viewModel.char(xIndex, yIndex))
-                            .frame(width: viewModel.dropWidth, height: viewModel.dropHeight)
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
+            
+            Grid(horizontalSpacing: 0, verticalSpacing: 0) {
+                ForEach(0..<viewModel.rowsCount, id: \.self) { xIndex in
+                    GridRow {
+                        ForEach(0..<viewModel.columnsCount, id: \.self) { yIndex in
+                            Text(viewModel.char(xIndex, yIndex))
+                                .foregroundColor(Color.green)
+                                .opacity(viewModel.opacity(xIndex, yIndex))
+                                .frame(width: viewModel.dropWidth, height: viewModel.dropHeight)
+                        }
                     }
                 }
             }
         }
     }
 }
+
 
 extension String {
     static func randomSubstring(ofLength length: Int, from string: String) -> String {

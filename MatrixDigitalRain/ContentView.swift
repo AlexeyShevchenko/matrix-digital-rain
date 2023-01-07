@@ -13,7 +13,7 @@ struct ContentView: View {
             .init(
                 sourceString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
                 dropHeight: 20,
-                columnsCount: 10
+                columnsCount: 18
             )
         )
     }
