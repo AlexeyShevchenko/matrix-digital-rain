@@ -70,26 +70,23 @@ extension DigitalRainView {
 }
 
 // MARK: - UI -
-
+// MARK: - should be a bit difficulty
 extension DigitalRainView.ViewModel {
     func char(_ x: Int, _ y: Int) -> String {
         String(chars[x][y])
     }
     
     func opacity(_ x: Int, _ y: Int) -> CGFloat {
-        // MARK: - should be a bit difficulty
-        
-        // --> currentIndex
-        // --> x
-        
         if x > currentIndex {
             return 0
+        } else {
+            return getOpacity(x, y)
         }
-        
-        if currentIndex == x {
-            return 1.0
-        }
-        return 0.1
+    }
+    
+    private func getOpacity(_ x: Int, _ y: Int) -> CGFloat {
+        let proprotion = CGFloat((currentIndex - x)) / CGFloat(visibleDropLength)
+        return 1 - proprotion
     }
 }
 
@@ -98,7 +95,7 @@ extension DigitalRainView.ViewModel {
 extension DigitalRainView.ViewModel {
     func startTimer() {
         Timer.scheduledTimer(
-            withTimeInterval: 0.5,
+            withTimeInterval: 0.1,
             repeats: true
         ) { [weak self] timer in
             guard let self = self else { return }
