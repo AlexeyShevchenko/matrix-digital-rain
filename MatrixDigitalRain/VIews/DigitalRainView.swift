@@ -21,13 +21,24 @@ extension DigitalRainView {
 }
 
 extension DigitalRainView {
-    class ViewModel: ObservableObject {
-        let sourceString: String
-        let dropHeight: CGFloat
-        let dropWidth: CGFloat
+    struct Matrix {
         let columnsCount: Int
         let rowsCount: Int
+    }
+}
+
+extension DigitalRainView {
+    class ViewModel: ObservableObject {
+        private let dropHeight: CGFloat
+        private let dropWidth: CGFloat
+        private let columnsCount: Int
+        private let rowsCount: Int // <--
         
+        let sourceString: String
+        let dropSize: CGSize
+        let matrix: Matrix
+        
+        @Published private var currentIndex: Int = 0
         @Published var chars: [[Character]]
         
         init(
@@ -38,8 +49,10 @@ extension DigitalRainView {
             self.sourceString = sourceString
             self.dropHeight = dropHeight
             self.columnsCount = columnsCount
-            self.rowsCount = Int(UIScreen.main.bounds.height / dropHeight)
+            self.rowsCount = .init(UIScreen.main.bounds.height / dropHeight)
             self.dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
+            self.dropSize = .init(width: dropWidth, height: dropHeight)
+            self.matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
             
             var result: [[Character]] = []
             for _ in 0..<rowsCount {
@@ -51,14 +64,44 @@ extension DigitalRainView {
             }
             chars = result
         }
-        
-        func char(_ x: Int, _ y: Int) -> String {
-            String(chars[x][y])
+    }
+}
+
+// MARK: - UI -
+
+extension DigitalRainView.ViewModel {
+    func char(_ x: Int, _ y: Int) -> String {
+        String(chars[x][y])
+    }
+    
+    func opacity(_ x: Int, _ y: Int) -> CGFloat {
+        0.1
+    }
+}
+
+// MARK: - Timer -
+
+extension DigitalRainView.ViewModel {
+    func startTimer() {
+        Timer.scheduledTimer(
+            withTimeInterval: 1.0,
+            repeats: true
+        ) { [weak self] timer in
+            guard let self = self else { return }
+            if self.currentIndex == self.rowsCount - 1 {
+                self.resetCurrentIndex()
+            } else {
+                self.incrementCurrentIndex()
+            }
         }
-        
-        func opacity(_ x: Int, _ y: Int) -> CGFloat {
-            0.1
-        }
+    }
+    
+    private func resetCurrentIndex() {
+        currentIndex = 0
+    }
+    
+    private func incrementCurrentIndex() {
+        currentIndex += 1
     }
 }
 
@@ -75,17 +118,19 @@ extension DigitalRainView {
             Color.black.edgesIgnoringSafeArea(.all)
             
             Grid(horizontalSpacing: 0, verticalSpacing: 0) {
-                ForEach(0..<viewModel.rowsCount, id: \.self) { xIndex in
+                ForEach(0..<viewModel.matrix.rowsCount, id: \.self) { xIndex in
                     GridRow {
-                        ForEach(0..<viewModel.columnsCount, id: \.self) { yIndex in
+                        ForEach(0..<viewModel.matrix.columnsCount, id: \.self) { yIndex in
                             Text(viewModel.char(xIndex, yIndex))
                                 .foregroundColor(Color.green)
                                 .opacity(viewModel.opacity(xIndex, yIndex))
-                                .frame(width: viewModel.dropWidth, height: viewModel.dropHeight)
+                                .frame(width: viewModel.dropSize.width, height: viewModel.dropSize.height)
                         }
                     }
                 }
             }
+        }.onAppear {
+            viewModel.startTimer()
         }
     }
 }
