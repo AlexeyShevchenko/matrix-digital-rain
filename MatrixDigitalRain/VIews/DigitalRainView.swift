@@ -58,8 +58,8 @@ extension DigitalRainView {
             self.dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
             self.dropSize = .init(width: dropWidth, height: dropHeight)
             self.matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
-            self.visibleDropLength = matrix.rowsCount / 3
-            self.wholeRowsCount = self.rowsCount + visibleDropLength + visibleDropLength
+            self.visibleDropLength = Int(CGFloat(matrix.rowsCount) / 2.5)
+            self.wholeRowsCount = rowsCount + visibleDropLength + visibleDropLength
             
             var offsetsArray: [Int] = []
             for i in 0..<columnsCount {
