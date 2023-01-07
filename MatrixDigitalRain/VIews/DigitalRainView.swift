@@ -33,6 +33,7 @@ extension DigitalRainView {
         private let dropWidth: CGFloat
         private let columnsCount: Int
         private let rowsCount: Int
+        private let visibleDropLength: Int
         
         let sourceString: String
         let dropSize: CGSize
@@ -53,6 +54,7 @@ extension DigitalRainView {
             self.dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
             self.dropSize = .init(width: dropWidth, height: dropHeight)
             self.matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
+            self.visibleDropLength = matrix.rowsCount / 3
             
             var result: [[Character]] = []
             for _ in 0..<rowsCount {
@@ -75,6 +77,15 @@ extension DigitalRainView.ViewModel {
     }
     
     func opacity(_ x: Int, _ y: Int) -> CGFloat {
+        // MARK: - should be a bit difficulty
+        
+        // --> currentIndex
+        // --> x
+        
+        if x > currentIndex {
+            return 0
+        }
+        
         if currentIndex == x {
             return 1.0
         }
