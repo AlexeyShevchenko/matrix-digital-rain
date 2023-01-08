@@ -9,15 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        DigitalRainView(
-            .init(
-                sourceString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-                dropHeight: 20,
-                columnsCount: 65,
-                verticalOffsetsProvider: VerticalOffsetsProvider(),
-                charsProvider: CharsProvider()
-            )
-        )
+        DownpourView(.init())
     }
 }
 

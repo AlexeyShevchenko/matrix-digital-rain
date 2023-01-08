@@ -17,8 +17,6 @@ struct DigitalRainView: View {
 extension DigitalRainView {
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
-            
             Grid(horizontalSpacing: 0, verticalSpacing: 0) {
                 ForEach(0..<viewModel.matrix.rowsCount, id: \.self) { rowIndex in
                     GridRow {

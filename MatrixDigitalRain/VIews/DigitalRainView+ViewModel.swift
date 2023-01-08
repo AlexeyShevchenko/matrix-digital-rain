@@ -16,6 +16,9 @@ extension DigitalRainView {
         private let visibleDropLength: Int
         private let sourceString: String
         private let wholeRowsCount: Int
+        
+        private let startIn: TimeInterval
+        
         private let verticalOffsetsProvider: VerticalOffsetsProviding
         private let charsProvider: CharsProviding
         
@@ -26,18 +29,20 @@ extension DigitalRainView {
         let font: Font
         let matrix: Matrix
 
-        @Published private var currentYIndex: Int = 0
+        @Published private var currentYIndex = 0
 
         init(
             sourceString: String,
             dropHeight: CGFloat,
             columnsCount: Int,
+            startIn: TimeInterval,
             verticalOffsetsProvider: VerticalOffsetsProviding,
             charsProvider: CharsProviding
         ) {
             self.sourceString = sourceString
             self.dropHeight = dropHeight
             self.columnsCount = columnsCount
+            self.startIn = startIn
             self.verticalOffsetsProvider = verticalOffsetsProvider
             self.charsProvider = charsProvider
 
@@ -45,7 +50,7 @@ extension DigitalRainView {
             dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
             dropSize = .init(width: dropWidth, height: dropHeight)
             matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
-            visibleDropLength = Int(CGFloat(matrix.rowsCount) / 3)
+            visibleDropLength = Int(CGFloat(matrix.rowsCount) * 0.75)
             wholeRowsCount = rowsCount + visibleDropLength * 2 + columnsCount * 2
             font = .init(UIFont(name: "Matrix Code NFI", size: 17) ?? .systemFont(ofSize: 17))
             
@@ -82,12 +87,14 @@ extension DigitalRainView.ViewModel {
 
 extension DigitalRainView.ViewModel {
     func startTimer() {
-        Timer.scheduledTimer(
-            withTimeInterval: 0.1,
-            repeats: true
-        ) { [weak self] timer in
-            guard let self = self else { return }
-            self.updateCurrentIndex()
+        DispatchQueue.main.asyncAfter(deadline: .now() + startIn) {
+            Timer.scheduledTimer(
+                withTimeInterval: 0.1,
+                repeats: true
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateCurrentIndex()
+            }
         }
     }
     

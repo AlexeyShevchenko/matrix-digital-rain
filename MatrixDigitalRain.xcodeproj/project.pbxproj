@@ -18,6 +18,7 @@
 		7CB4B1A3296AE6EE00885AA9 /* CharsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B1A2296AE6EE00885AA9 /* CharsProvider.swift */; };
 		7CB4B1A5296AE70C00885AA9 /* VerticalOffsetsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B1A4296AE70C00885AA9 /* VerticalOffsetsProvider.swift */; };
 		7CB4B1A7296AE73A00885AA9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B1A6296AE73A00885AA9 /* String+Extensions.swift */; };
+		7CB4B1A9296AE84C00885AA9 /* DownpourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B1A8296AE84C00885AA9 /* DownpourView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		7CB4B1A2296AE6EE00885AA9 /* CharsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharsProvider.swift; sourceTree = "<group>"; };
 		7CB4B1A4296AE70C00885AA9 /* VerticalOffsetsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOffsetsProvider.swift; sourceTree = "<group>"; };
 		7CB4B1A6296AE73A00885AA9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		7CB4B1A8296AE84C00885AA9 /* DownpourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownpourView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				7CB4B1A2296AE6EE00885AA9 /* CharsProvider.swift */,
 				7C242E182964BC0700564082 /* ContentView.swift */,
+				7CB4B1A8296AE84C00885AA9 /* DownpourView.swift */,
 				7C242E252964BC5700564082 /* DigitalRainView.swift */,
 				7CB4B1A0296AE6CC00885AA9 /* DigitalRainView+Matrix.swift */,
 				7CB4B19E296AE67D00885AA9 /* DigitalRainView+ViewModel.swift */,
@@ -182,6 +185,7 @@
 				7C242E262964BC5700564082 /* DigitalRainView.swift in Sources */,
 				7C242E192964BC0700564082 /* ContentView.swift in Sources */,
 				7CB4B1A7296AE73A00885AA9 /* String+Extensions.swift in Sources */,
+				7CB4B1A9296AE84C00885AA9 /* DownpourView.swift in Sources */,
 				7CB4B1A1296AE6CC00885AA9 /* DigitalRainView+Matrix.swift in Sources */,
 				7CB4B1A3296AE6EE00885AA9 /* CharsProvider.swift in Sources */,
 				7C242E172964BC0700564082 /* MatrixDigitalRainApp.swift in Sources */,
