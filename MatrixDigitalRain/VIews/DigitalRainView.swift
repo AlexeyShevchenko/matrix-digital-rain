@@ -56,14 +56,13 @@ extension DigitalRainView {
 
 extension DigitalRainView {
     class ViewModel: ObservableObject {
+        private let columnsCount: Int
         private let dropHeight: CGFloat
         private let dropWidth: CGFloat
-        private let columnsCount: Int
         private let rowsCount: Int
         private let visibleDropLength: Int
         private let sourceString: String
         private let wholeRowsCount: Int
-        
         private let verticalOffsetsProvider: VerticalOffsetsProviding
         private let charsProvider: CharsProviding
         
@@ -71,8 +70,9 @@ extension DigitalRainView {
         private var chars: [[Character]]
         
         let dropSize: CGSize
+        let font: Font
         let matrix: Matrix
-        
+
         @Published private var currentYIndex: Int = 0
 
         init(
@@ -87,27 +87,17 @@ extension DigitalRainView {
             self.columnsCount = columnsCount
             self.verticalOffsetsProvider = verticalOffsetsProvider
             self.charsProvider = charsProvider
-            
+
             rowsCount = .init(UIScreen.main.bounds.height / dropHeight)
             dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
             dropSize = .init(width: dropWidth, height: dropHeight)
             matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
-            visibleDropLength = Int(CGFloat(matrix.rowsCount) / 2.5)
+            visibleDropLength = Int(CGFloat(matrix.rowsCount) / 2)
             wholeRowsCount = rowsCount + visibleDropLength + visibleDropLength
-
+            font = .init(UIFont(name: "Matrix Code NFI", size: 17) ?? .systemFont(ofSize: 17))
+            
             verticalOffsets = verticalOffsetsProvider.verticalOffsets(columnsCount)
             chars = charsProvider.chars(rowsCount, columnsCount, sourceString)
-        }
-        
-        func shuffleArray(array: [Int]) -> [Int] {
-            var shuffledArray = array
-            for index in 0..<shuffledArray.count {
-                let randomIndex = Int.random(in: 0..<shuffledArray.count)
-                let temp = shuffledArray[index]
-                shuffledArray[index] = shuffledArray[randomIndex]
-                shuffledArray[randomIndex] = temp
-            }
-            return shuffledArray
         }
     }
 }
@@ -188,6 +178,7 @@ extension DigitalRainView {
                     GridRow {
                         ForEach(0..<viewModel.matrix.columnsCount, id: \.self) { columnIndex in
                             Text(viewModel.char(rowIndex, columnIndex))
+                                .font(viewModel.font)
                                 .foregroundColor(Color.green)
                                 .opacity(viewModel.opacity(rowIndex, columnIndex))
                                 .frame(width: viewModel.dropSize.width, height: viewModel.dropSize.height)

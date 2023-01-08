@@ -12,6 +12,7 @@
 		7C242E1B2964BC0C00564082 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C242E1A2964BC0C00564082 /* Assets.xcassets */; };
 		7C242E1E2964BC0C00564082 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C242E1D2964BC0C00564082 /* Preview Assets.xcassets */; };
 		7C242E262964BC5700564082 /* DigitalRainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C242E252964BC5700564082 /* DigitalRainView.swift */; };
+		7CB4B19C296AD15700885AA9 /* matrixcode.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CB4B19B296AD15700885AA9 /* matrixcode.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,8 @@
 		7C242E1A2964BC0C00564082 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C242E1D2964BC0C00564082 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7C242E252964BC5700564082 /* DigitalRainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalRainView.swift; sourceTree = "<group>"; };
+		7CB4B19B296AD15700885AA9 /* matrixcode.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = matrixcode.ttf; sourceTree = "<group>"; };
+		7CB4B19D296AD23400885AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +56,9 @@
 		7C242E152964BC0700564082 /* MatrixDigitalRain */ = {
 			isa = PBXGroup;
 			children = (
+				7CB4B19D296AD23400885AA9 /* Info.plist */,
 				7C242E162964BC0700564082 /* MatrixDigitalRainApp.swift */,
-				7C242E182964BC0700564082 /* ContentView.swift */,
-				7C242E1A2964BC0C00564082 /* Assets.xcassets */,
+				7CB4B19A296AD13600885AA9 /* Resources */,
 				7C242E242964BC1800564082 /* VIews */,
 				7C242E1C2964BC0C00564082 /* Preview Content */,
 			);
@@ -73,9 +76,19 @@
 		7C242E242964BC1800564082 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
+				7C242E182964BC0700564082 /* ContentView.swift */,
 				7C242E252964BC5700564082 /* DigitalRainView.swift */,
 			);
 			path = VIews;
+			sourceTree = "<group>";
+		};
+		7CB4B19A296AD13600885AA9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7C242E1A2964BC0C00564082 /* Assets.xcassets */,
+				7CB4B19B296AD15700885AA9 /* matrixcode.ttf */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +149,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CB4B19C296AD15700885AA9 /* matrixcode.ttf in Resources */,
 				7C242E1E2964BC0C00564082 /* Preview Assets.xcassets in Resources */,
 				7C242E1B2964BC0C00564082 /* Assets.xcassets in Resources */,
 			);
@@ -282,6 +296,7 @@
 				DEVELOPMENT_TEAM = PJVLDB56N4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MatrixDigitalRain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -311,6 +326,7 @@
 				DEVELOPMENT_TEAM = PJVLDB56N4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MatrixDigitalRain/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
