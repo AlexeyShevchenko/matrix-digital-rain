@@ -41,7 +41,7 @@ extension DownpourView {
                         sourceString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
                         dropHeight: 20,
                         columnsCount: 50,
-                        startIn: 9 * Double(index),
+                        startIn: 10 * Double(index),
                         verticalOffsetsProvider: VerticalOffsetsProvider(),
                         charsProvider: CharsProvider()
                     )
