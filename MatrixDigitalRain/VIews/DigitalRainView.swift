@@ -108,8 +108,7 @@ extension DigitalRainView.ViewModel {
     func char(_ rowIndex: Int, _ columnIndex: Int) -> String {
         String(chars[rowIndex][columnIndex])
     }
-    
-    // MARK: - should be a bit difficulty
+
     func opacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
         let verticalOffset = verticalOffsets[columnIndex]
         if currentYIndex < (rowIndex + verticalOffset) {
@@ -121,7 +120,6 @@ extension DigitalRainView.ViewModel {
     
     private func getOpacity(_ rowIndex: Int, _ columnIndex: Int) -> CGFloat {
         let verticalOffset = verticalOffsets[columnIndex]
-        
         let proprotion = CGFloat((currentYIndex - rowIndex - verticalOffset)) / CGFloat(visibleDropLength)
         return 1 - proprotion
     }
