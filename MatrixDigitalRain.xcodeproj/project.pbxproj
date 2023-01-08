@@ -13,6 +13,11 @@
 		7C242E1E2964BC0C00564082 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C242E1D2964BC0C00564082 /* Preview Assets.xcassets */; };
 		7C242E262964BC5700564082 /* DigitalRainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C242E252964BC5700564082 /* DigitalRainView.swift */; };
 		7CB4B19C296AD15700885AA9 /* matrixcode.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CB4B19B296AD15700885AA9 /* matrixcode.ttf */; };
+		7CB4B19F296AE67D00885AA9 /* DigitalRainView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B19E296AE67D00885AA9 /* DigitalRainView+ViewModel.swift */; };
+		7CB4B1A1296AE6CC00885AA9 /* DigitalRainView+Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B1A0296AE6CC00885AA9 /* DigitalRainView+Matrix.swift */; };
+		7CB4B1A3296AE6EE00885AA9 /* CharsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B1A2296AE6EE00885AA9 /* CharsProvider.swift */; };
+		7CB4B1A5296AE70C00885AA9 /* VerticalOffsetsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B1A4296AE70C00885AA9 /* VerticalOffsetsProvider.swift */; };
+		7CB4B1A7296AE73A00885AA9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB4B1A6296AE73A00885AA9 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		7C242E252964BC5700564082 /* DigitalRainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalRainView.swift; sourceTree = "<group>"; };
 		7CB4B19B296AD15700885AA9 /* matrixcode.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = matrixcode.ttf; sourceTree = "<group>"; };
 		7CB4B19D296AD23400885AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7CB4B19E296AE67D00885AA9 /* DigitalRainView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DigitalRainView+ViewModel.swift"; sourceTree = "<group>"; };
+		7CB4B1A0296AE6CC00885AA9 /* DigitalRainView+Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DigitalRainView+Matrix.swift"; sourceTree = "<group>"; };
+		7CB4B1A2296AE6EE00885AA9 /* CharsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharsProvider.swift; sourceTree = "<group>"; };
+		7CB4B1A4296AE70C00885AA9 /* VerticalOffsetsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOffsetsProvider.swift; sourceTree = "<group>"; };
+		7CB4B1A6296AE73A00885AA9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +86,13 @@
 		7C242E242964BC1800564082 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
+				7CB4B1A2296AE6EE00885AA9 /* CharsProvider.swift */,
 				7C242E182964BC0700564082 /* ContentView.swift */,
 				7C242E252964BC5700564082 /* DigitalRainView.swift */,
+				7CB4B1A0296AE6CC00885AA9 /* DigitalRainView+Matrix.swift */,
+				7CB4B19E296AE67D00885AA9 /* DigitalRainView+ViewModel.swift */,
+				7CB4B1A6296AE73A00885AA9 /* String+Extensions.swift */,
+				7CB4B1A4296AE70C00885AA9 /* VerticalOffsetsProvider.swift */,
 			);
 			path = VIews;
 			sourceTree = "<group>";
@@ -162,8 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CB4B19F296AE67D00885AA9 /* DigitalRainView+ViewModel.swift in Sources */,
+				7CB4B1A5296AE70C00885AA9 /* VerticalOffsetsProvider.swift in Sources */,
 				7C242E262964BC5700564082 /* DigitalRainView.swift in Sources */,
 				7C242E192964BC0700564082 /* ContentView.swift in Sources */,
+				7CB4B1A7296AE73A00885AA9 /* String+Extensions.swift in Sources */,
+				7CB4B1A1296AE6CC00885AA9 /* DigitalRainView+Matrix.swift in Sources */,
+				7CB4B1A3296AE6EE00885AA9 /* CharsProvider.swift in Sources */,
 				7C242E172964BC0700564082 /* MatrixDigitalRainApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
