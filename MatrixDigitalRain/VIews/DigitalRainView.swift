@@ -92,8 +92,8 @@ extension DigitalRainView {
             dropWidth = UIScreen.main.bounds.width / CGFloat(columnsCount)
             dropSize = .init(width: dropWidth, height: dropHeight)
             matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
-            visibleDropLength = Int(CGFloat(matrix.rowsCount) / 2)
-            wholeRowsCount = rowsCount + visibleDropLength + visibleDropLength
+            visibleDropLength = Int(CGFloat(matrix.rowsCount) / 3)
+            wholeRowsCount = rowsCount + visibleDropLength * 2 + columnsCount * 2
             font = .init(UIFont(name: "Matrix Code NFI", size: 17) ?? .systemFont(ofSize: 17))
             
             verticalOffsets = verticalOffsetsProvider.verticalOffsets(columnsCount)
@@ -141,7 +141,7 @@ extension DigitalRainView.ViewModel {
     }
     
     private func updateCurrentIndex() {
-        if currentYIndex == wholeRowsCount - 1 {
+        if currentYIndex == wholeRowsCount {
             self.resetCurrentIndex()
         } else {
             self.incrementCurrentIndex()
