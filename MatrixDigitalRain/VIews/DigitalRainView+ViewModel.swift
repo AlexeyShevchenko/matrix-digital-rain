@@ -89,7 +89,7 @@ extension DigitalRainView.ViewModel {
     func startTimer() {
         DispatchQueue.main.asyncAfter(deadline: .now() + startIn) {
             Timer.scheduledTimer(
-                withTimeInterval: 0.1,
+                withTimeInterval: 0.01,
                 repeats: true
             ) { [weak self] _ in
                 guard let self = self else { return }
