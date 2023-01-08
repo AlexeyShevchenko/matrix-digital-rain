@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         DownpourView(.init())
+            .onAppear {
+                UIApplication.shared.isIdleTimerDisabled = true
+            }
     }
 }
 
