@@ -13,11 +13,10 @@ extension DigitalRainView {
         private let dropHeight: CGFloat
         private let dropWidth: CGFloat
         private let rowsCount: Int
-        private let visibleDropLength: Int
         private let sourceString: String
-        private let wholeRowsCount: Int
-        
         private let startIn: TimeInterval
+        private let visibleDropLength: Int
+        private let wholeRowsCount: Int
         
         private let verticalOffsetsProvider: VerticalOffsetsProviding
         private let charsProvider: CharsProviding
@@ -52,7 +51,9 @@ extension DigitalRainView {
             matrix = .init(columnsCount: columnsCount, rowsCount: rowsCount)
             visibleDropLength = Int(CGFloat(matrix.rowsCount) * 0.75)
             wholeRowsCount = rowsCount + visibleDropLength * 2 + columnsCount * 2
-            font = .init(UIFont(name: "Matrix Code NFI", size: 17) ?? .systemFont(ofSize: 17))
+            
+            let fontSize: CGFloat = .init(Float.random(in: 15.0...19.0))
+            font = .init(UIFont(name: "Matrix Code NFI", size: fontSize) ?? .systemFont(ofSize: fontSize))
             
             verticalOffsets = verticalOffsetsProvider.verticalOffsets(columnsCount)
             chars = charsProvider.chars(rowsCount, columnsCount, sourceString)
